@@ -25,9 +25,8 @@ import option
 def get_daily_from_yahoo(ticker, start_date, end_date):
     try:
         stock = yf.Ticker(ticker)
-        # TODO: call Yahoo history method to return a dataframe of daily price data
+        #call Yahoo history method to return a dataframe of daily price data
         df = stock.history(period="1d", start=start_date, end=end_date)
-        # end TODO
         return(df)
     except:
          print(f"error: failed to fetch data for {ticker}")
@@ -35,7 +34,7 @@ def get_daily_from_yahoo(ticker, start_date, end_date):
 
 def download_data_to_csv(opt, list_of_tickers):
     #
-    ''' TODO: 
+    '''
     iterate through the list of tickers, call the get_daily_from_yahoo between two dates
     specified from the option, save the dataframe to a csv file <ticker>_daily.csv in the output_dir
     remember to add a extra column with the ticker
@@ -51,7 +50,6 @@ def download_data_to_csv(opt, list_of_tickers):
             df.to_csv(output)
         else:
             print(f'error. skipping{ticker}')
-    # end TODO
 
 def csv_to_table(csv_file_name, fields_map, db_connection, db_table):
     try:
@@ -71,17 +69,15 @@ def csv_to_table(csv_file_name, fields_map, db_connection, db_table):
         print(ticker)
         cursor = db_connection.cursor()
 
-        '''TODO: delete from the table any old data for the ticker
+        '''
+        delete from the table any old data for the ticker
         hint: sql = f"delete from {db_table} .... ", then call execute
         turn the dataframe into tuples
         
         insert data by using a insert ... values statement under executemany method
-        hint: sql = f"insert into {db_table} (Ticker, AsOfDate, ...)  VALUES (?, ?, ...) "
+        sql = f"insert into {db_table} (Ticker, AsOfDate, ...)  VALUES (?, ?, ...) "
         print(sql)
-
-        remember to close the db connection 
         '''
-        # end TODO
         
         #del old data
         del_sql = f"DELETE FROM {db_table} WHERE Ticker = ?"
