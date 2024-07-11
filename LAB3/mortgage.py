@@ -16,14 +16,10 @@ from bisection_method import bisection
 
 def calc_next_month_balance(prev_balance, level_payment, int_rate):
     # return next month balance 
-    # TODO:
-
     interest = prev_balance * int_rate/12 #annual interest rate -> monthly interest rate; 12 mon/year
     principal = level_payment - interest
     next_month_bal = prev_balance - principal
     return next_month_bal
-
-    # End TODO
 
 def last_month_balance(loan_amount, int_rate, mortgage_term, level_payment):
     # calculate the last month remaining balance
@@ -31,12 +27,9 @@ def last_month_balance(loan_amount, int_rate, mortgage_term, level_payment):
     # int_rate is the annual interest rate in fraction
 
     prev_bal = loan_amount
-
-    # TODO:
     for _ in range(mortgage_term * 12):
         prev_bal = calc_next_month_balance(prev_bal, level_payment, int_rate)
-        
-    # End TODO
+
     return(prev_bal)
 
 
@@ -45,8 +38,6 @@ def calc_level_payment(loan_amount, int_rate, mortgage_term):
     # then use the bisection method to require the last month balance to be zero
     a = loan_amount * (1+int_rate * mortgage_term)/(12*mortgage_term)
     b = a/2
-    # TODO:
-
     def func(level_payment):
         return last_month_balance(loan_amount, int_rate, mortgage_term, level_payment)
 
@@ -56,7 +47,6 @@ def calc_level_payment(loan_amount, int_rate, mortgage_term):
     level_payment,_ = bisection(func, b, a, eps=.0000001)
     return level_payment
 
-    # End TODO
     
 def test():
     loan_amount = 240000
@@ -69,7 +59,6 @@ def test():
     #excel res: 833.333
           
 def run():
-    #
     loan_amount = 240000
     int_rate = 0.05
     mortgage_term = 30
