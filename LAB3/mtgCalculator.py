@@ -21,15 +21,12 @@ class MortgageCalculator(object):
         self.term = term
 
     def _calc_next_month_balance(self, prev_balance, level_payment, int_rate):
-        # TODO 
         
         #Cpy & Paste from mortgage.py
         interest = prev_balance * int_rate/12 #annual interest rate -> monthly interest rate; 12 mon/year
         principal = level_payment - interest
         next_month_bal = prev_balance - principal
         return next_month_bal
-
-        # end TODO
     
     def _last_month_balance(self, level_payment):
 
@@ -55,8 +52,6 @@ class MortgageCalculator(object):
 
     def compute_level_payment_analytically(self):
         # use the analytical formula to compute the level payment
-        # TODO
-
         #Formula: L = ((B_0 (1+r)^n) *n)/(((1+r)^n)-1)
         B_0 = self.loan_amount
         n = self.term * 12 #total num payments
@@ -64,8 +59,6 @@ class MortgageCalculator(object):
         
         level_payment = (B_0 * math.pow(1+r, n) * r) / (math.pow(1+r, n) - 1)
         return level_payment
-
-        # end TODO
 
     
 def _test():
